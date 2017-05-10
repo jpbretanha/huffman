@@ -35,7 +35,7 @@ public class HuffmanTree {
             count++;
 
             list = huffman.sortByComparator(list, true);
-           
+
         }
          parentAll = new No(255+count,parent.getNoLeft().getValue() + parent.getNoRight().getValue());
 
