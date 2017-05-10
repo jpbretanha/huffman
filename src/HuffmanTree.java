@@ -38,8 +38,7 @@ public class HuffmanTree {
 
         }
 
-        System.out.println(parent.getNoLeft().getValue());
-        System.out.println(parent.getNoRight().getValue());
+        System.out.println(parent);
         parentAll = new No(255+count,parent.getNoLeft().getValue() + parent.getNoRight().getValue());
 
         parentAll.setNoLeft(parent.getNoLeft());

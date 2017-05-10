@@ -2,13 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="57a29ba9-d531-416c-91f9-d27787292c8e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/HuffmanTree.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Huffman/Huffman$1.class" afterPath="$PROJECT_DIR$/out/production/Huffman/Huffman$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Huffman/Huffman.class" afterPath="$PROJECT_DIR$/out/production/Huffman/Huffman.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Huffman/HuffmanTree.class" afterPath="$PROJECT_DIR$/out/production/Huffman/HuffmanTree.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Huffman.iml" afterPath="$PROJECT_DIR$/Huffman.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Huffman.java" afterPath="$PROJECT_DIR$/src/Huffman.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/HuffmanTree.java" afterPath="$PROJECT_DIR$/src/HuffmanTree.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -27,8 +23,8 @@
       <file leaf-file-name="Huffman.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Huffman.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1072">
-              <caret line="78" column="0" lean-forward="false" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+            <state relative-caret-position="239">
+              <caret line="77" column="0" lean-forward="false" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#472#492#0" expanded="true" />
@@ -41,8 +37,8 @@
       <file leaf-file-name="HuffmanTree.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/HuffmanTree.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="239">
-              <caret line="36" column="54" lean-forward="false" selection-start-line="36" selection-start-column="50" selection-end-line="36" selection-end-column="54" />
+            <state relative-caret-position="222">
+              <caret line="40" column="34" lean-forward="true" selection-start-line="40" selection-start-column="34" selection-end-line="40" selection-end-column="34" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -605,8 +601,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Huffman.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1072">
-          <caret line="78" column="0" lean-forward="false" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+        <state relative-caret-position="239">
+          <caret line="77" column="0" lean-forward="false" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#472#492#0" expanded="true" />
@@ -617,8 +613,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/HuffmanTree.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="36" column="54" lean-forward="false" selection-start-line="36" selection-start-column="50" selection-end-line="36" selection-end-column="54" />
+        <state relative-caret-position="222">
+          <caret line="40" column="34" lean-forward="true" selection-start-line="40" selection-start-column="34" selection-end-line="40" selection-end-column="34" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
