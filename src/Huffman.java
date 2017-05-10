@@ -8,12 +8,14 @@ import java.io.*;
 import java.util.*;
 import java.util.Map.Entry;
 
+
+
 /**
  * Created by jean.antunes on 05/05/2017.
  */
 public class Huffman {
 
-    private static Map<Integer, No> sortByComparator(Map<Integer, No> unsortMap, final boolean order) {
+    static Map<Integer, No> sortByComparator(Map<Integer, No> unsortMap, final boolean order) {
         List<Entry<Integer, No>> list = new LinkedList<Entry<Integer, No>>(unsortMap.entrySet());
 
         Collections.sort(list, new Comparator<Entry<Integer, No>>() {
@@ -39,7 +41,6 @@ public class Huffman {
         Map<Integer, No> countChars = new HashMap<>();
         for(char caracter:new String(b).toCharArray()) {
             if(!countChars.containsKey((int) caracter)){
-                countChars.put((int) caracter, new No((int) caracter, 1));
             }
             else {
                 No s = countChars.get((int) caracter);
@@ -50,42 +51,7 @@ public class Huffman {
     }
 
 
-    private No createTree(Map<Integer, No> list) {
 
-        No parent = null;
-        No parentAll;
-        Integer count = 0;
-
-        while (list.size() > 1) {
-            /*pega os 2 caracters com menor frequencia da lista*/
-            Integer k1 =  (Integer) list.keySet().toArray()[0];
-            Integer k2 =  (Integer) list.keySet().toArray()[1];
-
-            No node1 = list.get(k1);
-            No node2 = list.get(k2);
-
-            list.remove(k1);
-            list.remove(k2);
-
-            parent = new No(255+count, node1.getValue() + node2.getValue());
-
-            parent.setNoLeft(node1);
-            parent.setNoRight(node2);
-
-            list.put(255+count,parent);
-            count++;
-
-            list = sortByComparator(list, true);
-
-        }
-
-        parentAll = new No(255+count,parent.getNoLeft().getValue() + parent.getNoRight().getValue());
-
-        parentAll.setNoLeft(parent.getNoLeft());
-        parentAll.setNoRight(parent.getNoRight());
-
-        return parentAll;
-    }
 
     public void prefixado(No no) {
         if(no != null){
@@ -100,6 +66,7 @@ public class Huffman {
 
     public static void main(String[] args) throws IOException {
         Huffman huf = new Huffman();
+        HuffmanTree arvore = new HuffmanTree();
 
         FileInputStream file = new FileInputStream("Files/file.txt");
         BufferedInputStream buf = new BufferedInputStream(file);
@@ -109,7 +76,7 @@ public class Huffman {
 
         Map<Integer, No> a = huf.countFrequencies(b);
 
-        No teste = huf.createTree(a);
+        No teste = arvore.createTree(a);
         huf.prefixado(teste);
     }
 }
