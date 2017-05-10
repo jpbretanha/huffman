@@ -41,6 +41,7 @@ public class Huffman {
         Map<Integer, No> countChars = new HashMap<>();
         for(char caracter:new String(b).toCharArray()) {
             if(!countChars.containsKey((int) caracter)){
+                countChars.put((int) caracter, new No((int) caracter, 1));
             }
             else {
                 No s = countChars.get((int) caracter);
@@ -75,7 +76,7 @@ public class Huffman {
         data.read(b);
 
         Map<Integer, No> a = huf.countFrequencies(b);
-
+        System.out.println(a.values());
         No teste = arvore.createTree(a);
         huf.prefixado(teste);
     }

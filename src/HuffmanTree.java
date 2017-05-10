@@ -11,7 +11,7 @@ public class HuffmanTree {
      static No createTree(Map<Integer, No> list) {
 
         No parent = null;
-        No parentAll;
+        No parentAll = null;
         Integer count = 0;
         Huffman huffman = new Huffman();
 
@@ -35,14 +35,12 @@ public class HuffmanTree {
             count++;
 
             list = huffman.sortByComparator(list, true);
-
+           
         }
+         parentAll = new No(255+count,parent.getNoLeft().getValue() + parent.getNoRight().getValue());
 
-        System.out.println(parent);
-        parentAll = new No(255+count,parent.getNoLeft().getValue() + parent.getNoRight().getValue());
-
-        parentAll.setNoLeft(parent.getNoLeft());
-        parentAll.setNoRight(parent.getNoRight());
+         parentAll.setNoLeft(parent.getNoLeft());
+         parentAll.setNoRight(parent.getNoRight());
 
         return parentAll;
     }
