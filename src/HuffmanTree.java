@@ -6,12 +6,9 @@
 import java.util.*;
 
 public class HuffmanTree {
-
-
      static No createTree(Map<Integer, No> list) {
 
         No parent = null;
-        No parentAll = null;
         Integer count = 1;
         Huffman huffman = new Huffman();
 
@@ -34,19 +31,9 @@ public class HuffmanTree {
             list.put(255+count,parent);
 
             count++;
-
-
             list = huffman.sortByComparator(list, true);
 
         }
-         //parentAll = new No(255+count,parent.getNoLeft().getValue() + parent.getNoRight().getValue());
-
-         // parentAll.setNoLeft(parent.getNoLeft());
-         //parentAll.setNoRight(parent.getNoRight())
-
         return parent;
     }
-
-
-
 }

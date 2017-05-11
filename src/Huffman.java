@@ -70,32 +70,26 @@ public class Huffman {
         }
     }
 
-    public void tableCodes(No root, ArrayList<Integer> pilha) {
-
+    public Map<Integer,ArrayList> tableCodes(No root, ArrayList<Integer> pilha, Map<Integer, ArrayList> table) {
         if(root.getKey() > 255) {
-
-//            System.out.println("Nodo Pai: " + root.getKey());
-//            System.out.println("Nodo Direita: " + root.getNoRight().getKey());
-//            System.out.println("Nodo Esquerda: " + root.getNoLeft().getKey());
-//            System.out.println("Pilha no começo: " + pilha.toString());
-
             pilha.add(1);
-//            System.out.println("Pilha depois de adicionar 1: " + pilha.toString());
-            tableCodes(root.getNoLeft(), pilha);
+            tableCodes(root.getNoLeft(), pilha, table);
             pilha.remove(pilha.size()-1);
-//            System.out.println("Pilha depois de remover do inicio: " + pilha.toString());
             pilha.add(0);
-//            System.out.println("Pilha depois de adicionar 0: " + pilha.toString());
-            tableCodes(root.getNoRight(), pilha);
+            tableCodes(root.getNoRight(), pilha, table);
             pilha.remove(pilha.size()-1);
-//            System.out.println("Pilha depois de remover do inicio 2: " + pilha.toString());
-
-
         }
         else {
-            System.out.println(root.getKey());
-            System.out.println("pilha completa: " + pilha.toString());
+            //System.out.println(root.getKey());
+           //System.out.println("pilha completa: " + pilha.toString());
+           ArrayList<Integer> aux = new ArrayList<>();
+           /*add pilha na tabela*/
+           for(int i=0;i<pilha.size();i++)
+               aux.add(i, pilha.get(i));
+
+           table.put(root.getKey(),aux);
         }
+        return table;
     }
 
     public String readBits(String arquivo) {
@@ -136,11 +130,9 @@ public class Huffman {
         Map<Integer, No> a = huf.countFrequencies(b);
         No teste = arvore.createTree(a);
 
-        huf.tableCodes(teste, new ArrayList<>());
-        huf.prefixado(teste);
+        Map<Integer, ArrayList> table = huf.tableCodes(teste, new ArrayList<>(), new HashMap<>());
 
-      // System.out.println(teste.values());
-        //
-        //huf.prefixado(teste);
+        System.out.println(table.toString());
+
     }
 }
