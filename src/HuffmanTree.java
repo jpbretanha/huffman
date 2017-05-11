@@ -44,6 +44,8 @@ public class HuffmanTree {
          // parentAll.setNoLeft(parent.getNoLeft());
          //parentAll.setNoRight(parent.getNoRight());
 
+         
+
         return parent;
     }
 
