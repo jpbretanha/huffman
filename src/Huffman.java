@@ -62,7 +62,7 @@ public class Huffman {
         if(no != null){
             prefixado(no.getNoLeft());
 
-           System.out.print(no.getKey()+ " ");
+//           System.out.print(no.getKey()+ " ");
             prefixado(no.getNoRight());
 
 
@@ -73,16 +73,28 @@ public class Huffman {
     public void tableCodes(No root, ArrayList<Integer> pilha) {
 
         if(root.getKey() > 255) {
-            pilha.add(0,1);
+
+//            System.out.println("Nodo Pai: " + root.getKey());
+//            System.out.println("Nodo Direita: " + root.getNoRight().getKey());
+//            System.out.println("Nodo Esquerda: " + root.getNoLeft().getKey());
+//            System.out.println("Pilha no começo: " + pilha.toString());
+
+            pilha.add(1);
+//            System.out.println("Pilha depois de adicionar 1: " + pilha.toString());
             tableCodes(root.getNoLeft(), pilha);
-            pilha.remove(0);
-            pilha.add(0,0);
+            pilha.remove(pilha.size()-1);
+//            System.out.println("Pilha depois de remover do inicio: " + pilha.toString());
+            pilha.add(0);
+//            System.out.println("Pilha depois de adicionar 0: " + pilha.toString());
             tableCodes(root.getNoRight(), pilha);
-            pilha.remove(0);
+            pilha.remove(pilha.size()-1);
+//            System.out.println("Pilha depois de remover do inicio 2: " + pilha.toString());
+
+
         }
         else {
             System.out.println(root.getKey());
-            System.out.println(pilha.toString());
+            System.out.println("pilha completa: " + pilha.toString());
         }
     }
 
