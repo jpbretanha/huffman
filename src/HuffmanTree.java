@@ -42,7 +42,7 @@ public class HuffmanTree {
          //parentAll = new No(255+count,parent.getNoLeft().getValue() + parent.getNoRight().getValue());
 
          // parentAll.setNoLeft(parent.getNoLeft());
-         //parentAll.setNoRight(parent.getNoRight());
+         //parentAll.setNoRight(parent.getNoRight())
 
         return parent;
     }
