@@ -12,7 +12,7 @@ public class HuffmanTree {
 
         No parent = null;
         No parentAll = null;
-        Integer count = 0;
+        Integer count = 1;
         Huffman huffman = new Huffman();
 
         while (list.size() > 1) {
@@ -32,17 +32,19 @@ public class HuffmanTree {
             parent.setNoRight(node2);
 
             list.put(255+count,parent);
+
             count++;
+
 
             list = huffman.sortByComparator(list, true);
 
         }
-         parentAll = new No(255+count,parent.getNoLeft().getValue() + parent.getNoRight().getValue());
+         //parentAll = new No(255+count,parent.getNoLeft().getValue() + parent.getNoRight().getValue());
 
-         parentAll.setNoLeft(parent.getNoLeft());
-         parentAll.setNoRight(parent.getNoRight());
+        // parentAll.setNoLeft(parent.getNoLeft());
+         //parentAll.setNoRight(parent.getNoRight());
 
-        return parentAll;
+        return parent;
     }
 
 

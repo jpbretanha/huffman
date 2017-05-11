@@ -5,9 +5,13 @@ import javax.xml.soap.Node;
 import javax.xml.soap.SOAPElement;
 import javax.xml.soap.SOAPException;
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 import java.util.Map.Entry;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -56,13 +60,53 @@ public class Huffman {
 
     public void prefixado(No no) {
         if(no != null){
-            System.out.print(no.getValue()+ " ");
-            System.out.println("\n '0' ");
             prefixado(no.getNoLeft());
-            System.out.println("\n '1' ");
+
+           System.out.print(no.getKey()+ " ");
             prefixado(no.getNoRight());
 
+
+
         }
+    }
+
+    public void tableCodes(No root, ArrayList<Integer> pilha) {
+
+        if(root.getKey() > 255) {
+            pilha.add(0,1);
+            tableCodes(root.getNoLeft(), pilha);
+            pilha.remove(0);
+            pilha.add(0,0);
+            tableCodes(root.getNoRight(), pilha);
+            pilha.remove(0);
+        }
+        else {
+            System.out.println(root.getKey());
+            System.out.println(pilha.toString());
+        }
+    }
+
+    public String readBits(String arquivo) {
+        Path path = Paths.get(arquivo);
+        byte[] data;
+        try {
+            data = Files.readAllBytes(path);
+            BitSet set = BitSet.valueOf(data);
+
+            String binaryString = "";
+            for (int i = 0; i <= set.length(); i++) {
+                if (set.get(i)) {
+                    binaryString += "1";
+                } else {
+                    binaryString += "0";
+                }
+            }
+
+            return binaryString;
+        } catch (IOException ex) {
+            //Logger.getLogger(IOobject.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "0";
     }
 
     public static void main(String[] args) throws IOException {
@@ -74,10 +118,17 @@ public class Huffman {
         DataInputStream data = new DataInputStream(buf);
         byte[] b = new byte[file.available()];
         data.read(b);
+        String tes = huf.readBits("Files/file.txt");
 
+        //System.out.println(tes.length());
         Map<Integer, No> a = huf.countFrequencies(b);
-        System.out.println(a.values());
         No teste = arvore.createTree(a);
+
+        huf.tableCodes(teste, new ArrayList<>());
         huf.prefixado(teste);
+
+      // System.out.println(teste.values());
+        //
+        //huf.prefixado(teste);
     }
 }
