@@ -19,45 +19,49 @@ public class Decompress {
             tableFreq.put(key,new No(key, value));
 
         }
+
         return tableFreq;
     }
-
+    public void prefixado(No no) {
+        if(no != null){
+            System.out.print(no.getKey() + " ");
+            prefixado(no.getNoLeft());
+            prefixado(no.getNoRight());
+        }
+    }
     public String decode(String text) throws FileNotFoundException {
-
         Decompress dec = new Decompress();
         HuffmanTree tree = new HuffmanTree();
         Map<Integer, No> tableFreq = dec.readTableFrequencies("Files/tableFrequencies.txt");
         /*gera a arvore*/
         No root = tree.createTree(tableFreq);
+
         No current = root;
 
         StringBuilder data = new StringBuilder();
         for (char c: text.toCharArray()) {
-            System.out.println(c);
-            if(current.getKey() < 255) {
-                data.append(current.getKey());
-                //System.out.println(current.getKey());
-                current = root;
-            }
-            if(c == '0') {
+            if(c == '1') {
                 current = current.getNoLeft();
-
             }
             else {
                 current = current.getNoRight();
-
             }
-
+            if(current.getKey() < 255) {
+                data.append((char) ((int) current.getKey()));
+                current = root;
+            }
         }
         return data.toString();
     }
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws IOException {
        Huffman huf = new Huffman();
         Decompress dec = new Decompress();
        String compressFile = huf.readBits("Files/compress.bin");
-        String result = dec.decode(compressFile);
+       //System.out.println(compressFile);
+       String result = dec.decode(compressFile);
         System.out.println(result);
+
 
     }
 }

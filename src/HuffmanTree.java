@@ -7,7 +7,7 @@ import java.util.*;
 
 public class HuffmanTree {
      static No createTree(Map<Integer, No> list) {
-
+       
         No parent = null;
         Integer count = 1;
         Huffman huffman = new Huffman();
@@ -34,6 +34,8 @@ public class HuffmanTree {
             list = huffman.sortByComparator(list, true);
 
         }
+
         return parent;
-    }
+
+     }
 }

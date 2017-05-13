@@ -22,13 +22,27 @@ public class Huffman {
     static Map<Integer, No> sortByComparator(Map<Integer, No> unsortMap, final boolean order) {
         List<Entry<Integer, No>> list = new LinkedList<Entry<Integer, No>>(unsortMap.entrySet());
 
+        /*ordena pela frequencia*/
         Collections.sort(list, new Comparator<Entry<Integer, No>>() {
             public int compare(Entry<Integer, No> o1, Entry<Integer, No> o2) {
                 if (order){
                     return o1.getValue().getValue().compareTo(o2.getValue().getValue());
+
                 }
                 else {
                     return o2.getValue().getValue().compareTo(o1.getValue().getValue());
+                }
+            }
+        });
+        /*ordena pela chave*/
+        Collections.sort(list, new Comparator<Entry<Integer, No>>(){
+            public int compare(Entry<Integer, No> o1, Entry<Integer, No> o2) {
+                if (order){
+                    return o1.getValue().getKey().compareTo(o2.getValue().getKey());
+
+                }
+                else {
+                    return o2.getValue().getKey().compareTo(o1.getValue().getKey());
                 }
             }
         });
@@ -60,8 +74,10 @@ public class Huffman {
             pilha.add(1);
             tableCodes(root.getNoLeft(), pilha, table);
             pilha.remove(pilha.size()-1);
+
             pilha.add(0);
             tableCodes(root.getNoRight(), pilha, table);
+
             pilha.remove(pilha.size()-1);
         }
         else {
@@ -79,11 +95,13 @@ public class Huffman {
     public String encode(byte [] b) {
         Huffman huf = new Huffman();
         HuffmanTree tree = new HuffmanTree();
-
+        Decompress d = new Decompress();
         Map<Integer, No> tableFrequencies = huf.countFrequencies(b);
 
         huf.saveTableFrequencies(tableFrequencies);
+
         No root = tree.createTree(tableFrequencies);
+
         Map<Integer, String> codeMap = huf.tableCodes(root, new ArrayList<>(), new HashMap<>());
 
         StringBuilder data = new StringBuilder();
@@ -111,11 +129,10 @@ public class Huffman {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-
-
     }
 
     public void geraSaida(String arquivo, String encoded) {
+
         BitSet bitSet = new BitSet(encoded.length());
         int bitcounter = 0;
         for (Character c : encoded.toCharArray()) {
@@ -127,19 +144,22 @@ public class Huffman {
 
         byte[] toByteArray = bitSet.toByteArray();
 
-        try (PrintStream ps = new PrintStream(new File("Files/" + arquivo))) {
+        try (PrintStream ps = new PrintStream(new File(arquivo))) {
             ps.write(toByteArray, 0, toByteArray.length);
             ps.close();
         } catch (FileNotFoundException ex) {
-            System.out.println("DEU RUIM");
+            //Logger.getLogger(IOobject.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }
 
     public String readBits(String arquivo) {
         Path path = Paths.get(arquivo);
+
         byte[] data;
         try {
-            data = Files.readAllBytes(path);
+            data = Files.toByteArray(path);
+
             BitSet set = BitSet.valueOf(data);
 
             String binaryString = "";
@@ -150,7 +170,7 @@ public class Huffman {
                     binaryString += "0";
                 }
             }
-
+            //System.out.println(binaryString);
             return binaryString;
         } catch (IOException ex) {
             //Logger.getLogger(IOobject.class.getName()).log(Level.SEVERE, null, ex);
@@ -168,13 +188,20 @@ public class Huffman {
         byte[] b = new byte[file.available()];
         data.read(b);
 
-       // System.out.println(b.length);
         String cod = huf.encode(b);
-        //System.out.println(cod);
-        //System.out.println(cod.length()/4);
+        Decompress d = new Decompress();
+
+        //System.out.println(d.decode(cod));
+
         String normal = huf.readBits("Files/file.txt");
 
         huf.geraSaida("normal.bin", normal);
         huf.geraSaida("compress.bin", cod);
+
+       huf.readBits("Files/compress.bin");
+
+
+        //System.out.println("Compress");
+        //huf.readBits("Files/compress.bin");
     }
 }
