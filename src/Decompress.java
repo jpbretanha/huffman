@@ -55,12 +55,12 @@ public class Decompress {
     }
 
     public static void main(String[] args) throws IOException {
-       Huffman huf = new Huffman();
+        Huffman huf = new Huffman();
         Decompress dec = new Decompress();
-       String compressFile = huf.readBits("Files/compress.bin");
-       //System.out.println(compressFile);
-       String result = dec.decode(compressFile);
-        System.out.println(result);
+        String compressFile = huf.readBits("Files/compress.bin");
+        //System.out.println(compressFile);
+        String result = dec.decode(compressFile);
+        System.out.println("Palavra descomprimida: " + result);
 
 
     }

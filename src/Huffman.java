@@ -99,7 +99,6 @@ public class Huffman {
         Map<Integer, No> tableFrequencies = huf.countFrequencies(b);
 
         huf.saveTableFrequencies(tableFrequencies);
-
         No root = tree.createTree(tableFrequencies);
 
         Map<Integer, String> codeMap = huf.tableCodes(root, new ArrayList<>(), new HashMap<>());
@@ -155,11 +154,9 @@ public class Huffman {
 
     public String readBits(String arquivo) {
         Path path = Paths.get(arquivo);
-
         byte[] data;
         try {
-            data = Files.toByteArray(path);
-
+            data = Files.readAllBytes(path);
             BitSet set = BitSet.valueOf(data);
 
             String binaryString = "";
@@ -170,7 +167,7 @@ public class Huffman {
                     binaryString += "0";
                 }
             }
-            //System.out.println(binaryString);
+
             return binaryString;
         } catch (IOException ex) {
             //Logger.getLogger(IOobject.class.getName()).log(Level.SEVERE, null, ex);
@@ -195,10 +192,10 @@ public class Huffman {
 
         String normal = huf.readBits("Files/file.txt");
 
-        huf.geraSaida("normal.bin", normal);
-        huf.geraSaida("compress.bin", cod);
+        huf.geraSaida("Files/normal.bin", normal);
+        huf.geraSaida("Files/compress.bin", cod);
 
-       huf.readBits("Files/compress.bin");
+        huf.readBits("Files/compress.bin");
 
 
         //System.out.println("Compress");
