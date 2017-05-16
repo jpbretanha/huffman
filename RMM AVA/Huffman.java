@@ -1,4 +1,3 @@
-
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -6,11 +5,8 @@ import java.nio.file.Paths;
 import java.util.*;
 import java.util.Map.Entry;
 
+//Jean Antunes e João Pedro Bretanha
 
-
-/**
- * Created by jean.antunes on 05/05/2017.
- */
 public class Huffman {
 
     static Map<Integer, No> sortByComparator(Map<Integer, No> unsortMap, final boolean order) {
@@ -170,29 +166,29 @@ public class Huffman {
     }
 
     public static void main(String[] args) throws IOException {
-        Huffman huf = new Huffman();
-        HuffmanTree tree = new HuffmanTree();
 
-        FileInputStream file = new FileInputStream("Files/file.txt");
-        BufferedInputStream buf = new BufferedInputStream(file);
-        DataInputStream data = new DataInputStream(buf);
-        byte[] b = new byte[file.available()];
-        data.read(b);
+        if(args.length == 0){
+            System.out.println("Para rodar a compressao, digite: java Huffman <endereco do arquivo .txt>");
+        }else {
+            Huffman huf = new Huffman();
+            HuffmanTree tree = new HuffmanTree();
 
-        String cod = huf.encode(b);
-        Decompress d = new Decompress();
+            FileInputStream file = new FileInputStream(args[0]);
+            BufferedInputStream buf = new BufferedInputStream(file);
+            DataInputStream data = new DataInputStream(buf);
+            byte[] b = new byte[file.available()];
+            data.read(b);
 
-        //System.out.println(d.decode(cod));
+            String cod = huf.encode(b);
+            Decompress d = new Decompress();
 
-        String normal = huf.readBits("Files/file.txt");
+            String normal = huf.readBits(args[0]);
 
-        huf.geraSaida("Files/normal.bin", normal);
-        huf.geraSaida("Files/compress.bin", cod);
+            huf.geraSaida("Files/normal.bin", normal);
+            huf.geraSaida("Files/compress.bin", cod);
 
-        huf.readBits("Files/compress.bin");
-
-
-        //System.out.println("Compress");
-        //huf.readBits("Files/compress.bin");
+            System.out.println("Arquivo Comprimido e arquivo normal gerados!\n");
+            System.out.println("Os arquivos se encontram na pasta Files.\nO arquivo compress.bin eh onde estah o codigo gerado comprimido. \nO normal.bin eh o arquivo sem compressao");
+        }
     }
 }
